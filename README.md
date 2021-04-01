@@ -1,2 +1,2 @@
 # CellsMagicSpriteKit
-[Demo](./media/cellsMagic.gif)
+![Demo](./media/cellsMagic.gif)
