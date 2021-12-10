@@ -95,11 +95,12 @@ class CellularAutomata: SKSpriteNode {
     
     func generateNewColor(previousColor: NSColor) -> NSColor {
         let delta: CGFloat = 0.1
+        
         var channels = [previousColor.redComponent, previousColor.greenComponent, previousColor.blueComponent]
-        let randomNum = Int(arc4random_uniform(3))
+        let randomNum = Int(arc4random_uniform(UInt32(channels.count)))
         let randomSign = Int(arc4random_uniform(2))
         
-        //1 - color should be in between 0.3 and 1
+        //1 - color should be in between 0.3 and 1, but I corrected it to 0.1 because I decided that I need dark colors
         //2 - should change randomly by +delta or -delta
         switch channels[randomNum] {
         case 0...0.1:
@@ -139,11 +140,11 @@ class AutomatonCell: SKSpriteNode {
     var row: Int = 0
     var col: Int = 0
     var colorChanged = false
-    
+
     func calculateDistance(to anotherCell: AutomatonCell) -> Double {
         return sqrt(pow(Double(self.col - anotherCell.col), 2) + pow(Double(self.row - anotherCell.row), 2))
     }
-    
+
     func addGlow(radius: Float = 30) {
         let effectNode = SKEffectNode()
         effectNode.shouldRasterize = true
